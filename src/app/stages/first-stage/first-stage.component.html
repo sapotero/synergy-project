@@ -1,0 +1,351 @@
+<div style="background: #ECECEC;padding:30px;">
+  <div nz-row nzGutter="32">
+    <div nz-col nzSpan="24">
+      <h4 nz-typography> Authorization forms</h4>
+    </div>
+    <div nz-col nzSpan="8">
+      <nz-card nzTitle="Sign-in ">
+        <form nz-form class="login-form">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+              <nz-input-group nzPrefixIcon="user">
+                <input type="text" nz-input placeholder="Username"/>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+              <nz-input-group nzPrefixIcon="lock">
+                <input type="password" nz-input placeholder="Password"/>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <div nz-row class="login-form-margin">
+            <div nz-col [nzSpan]="12">
+              <label nz-checkbox>
+                <span>Remember me</span>
+              </label>
+            </div>
+            <div nz-col [nzSpan]="12">
+              <a class="login-form-forgot">Forgot password</a>
+            </div>
+          </div>
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+          Or
+          <a>register now!</a>
+        </form>
+      </nz-card>
+
+    </div>
+    <div nz-col nzSpan="8">
+      <nz-card nzTitle="Sign-up">
+        <form nz-form class="login-form">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+              <nz-input-group nzPrefixIcon="user">
+                <input type="text" nz-input placeholder="Username"/>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your email!">
+              <nz-input-group nzPrefixIcon="mail">
+                <input type="email" nz-input placeholder="Email"/>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+              <nz-input-group nzPrefixIcon="lock">
+                <input type="password" nz-input placeholder="Password"/>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Sign up</button>
+          Already have account?
+          <a>sign-in now!</a>
+        </form>
+      </nz-card>
+    </div>
+
+
+    <div nz-col nzSpan="8">
+      <nz-card nzTitle="Reset password">
+        <form nz-form class="login-form">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+              <nz-input-group nzPrefixIcon="user">
+                <input type="text" nz-input placeholder="Username"/>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Recover password</button>
+          Any troubles with account?
+          <a>get support!</a>
+        </form>
+      </nz-card>
+    </div>
+  </div>
+
+  <div nz-row nzGutter="32">
+
+    <nz-divider></nz-divider>
+    <div nz-col nzSpan="24">
+      <h4 nz-typography>User management</h4>
+    </div>
+    <div nz-col nzSpan="24" style="margin-bottom: 16px">
+      <nz-card nzTitle="List all users" [nzExtra]="addTemplate">
+        <nz-table #userTable [nzData]="users">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of userTable.data">
+            <td>{{ data.name }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.company }}</td>
+            <td>{{ data.role }}</td>
+            <td>
+              <a>Edit</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a>Block</a>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+
+    <div nz-col nzSpan="16">
+      <nz-card nzTitle="View user profile">
+        <nz-descriptions nzTitle="User Info" nzBordered>
+          <nz-descriptions-item nzTitle="UserName">John Brown</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Telephone">1810000000</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Live">Hangzhou, Zhejiang</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Address" [nzSpan]="2">
+            New York No. 1 Lake Park
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Email">john_brown@mail.com</nz-descriptions-item>
+        </nz-descriptions>
+      </nz-card>
+    </div>
+
+    <div nz-col nzSpan="8">
+      <nz-card nzTitle="Edit user information">
+        <form nz-form>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
+              <input nz-input placeholder="username"/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input nz-input placeholder="email" type="email"/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7">Company</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input nz-input placeholder="company name"/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7">Mobile</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input nz-input placeholder="mobile"/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+              <button nz-button nzType="primary">Submit</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-card>
+    </div>
+  </div>
+
+  <div nz-row nzGutter="32">
+    <nz-divider></nz-divider>
+    <div nz-col nzSpan="24">
+      <h4 nz-typography>Role management</h4>
+    </div>
+
+    <div nz-col nzSpan="8">
+      <nz-card nzTitle="List all roles" [nzExtra]="addTemplate">
+        <nz-table #roleTable [nzData]="roles">
+          <thead>
+          <tr>
+            <th>Role</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of roleTable.data">
+            <td>{{ data.role }}</td>
+            <td>{{ data.description }}</td>
+            <td>
+              <a>Edit</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a>Block</a>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+
+    <div nz-col nzSpan="8">
+      <nz-card nzTitle="Add/edit role">
+        <form nz-form>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Role name</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
+              <input nz-input placeholder="role name"/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7">Description</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input nz-input placeholder="description"/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+              <button nz-button nzType="primary">Submit</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-card>
+    </div>
+
+    <div nz-col nzSpan="8">
+      <nz-card nzTitle="Assign role to user">
+        <form nz-form>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Role</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <nz-select>
+                <nz-option nzValue="admin" nzLabel="Admin"></nz-option>
+                <nz-option nzValue="user" nzLabel="User"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>User</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <nz-select>
+                <nz-option nzValue="jim" nzLabel="John Brown"></nz-option>
+                <nz-option nzValue="joe" nzLabel="Jim Green"></nz-option>
+                <nz-option nzValue="disabled" nzLabel="Joe Black" nzDisabled></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+              <button nz-button nzType="primary">Assign</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-card>
+    </div>
+  </div>
+
+  <div nz-row nzGutter="32">
+    <nz-divider></nz-divider>
+    <div nz-col nzSpan="24">
+      <h4 nz-typography>Project management</h4>
+    </div>
+
+    <div nz-col nzSpan="16">
+      <nz-card nzTitle="List all projects" [nzExtra]="addTemplate">
+        <nz-table #projectTable [nzData]="projects">
+          <thead>
+          <tr>
+            <th>Project name</th>
+            <th>Developer</th>
+            <th>Owner</th>
+            <th>Users</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of projectTable.data">
+            <td>{{ data.name }}</td>
+            <td>{{ data.developer }}</td>
+            <td>{{ data.owner }}</td>
+            <td>{{ data.users }}</td>
+            <td>
+              <a>Edit</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a>Block</a>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+
+    <div nz-col nzSpan="8">
+      <nz-card nzTitle="Add project">
+        <form nz-form>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Project name</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
+              <input nz-input placeholder="project name"/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Developer</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input nz-input placeholder="developer"/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7">Owner</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <input nz-input placeholder="owner"/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7">Users</nz-form-label>
+            <nz-form-control [nzSpan]="12">
+              <nz-select
+                [nzMaxTagCount]="3"
+                [nzMaxTagPlaceholder]="tagPlaceHolder"
+                nzMode="multiple"
+                nzPlaceHolder="Please select"
+                [(ngModel)]="listOfSelectedValue">
+                <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
+              </nz-select>
+            </nz-form-control>
+
+            <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+              <button nz-button nzType="primary">Submit</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #addTemplate>
+  <a href="#">
+    <i nz-icon nzType="plus" nzTheme="outline"></i>
+  </a>
+</ng-template>
