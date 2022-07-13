@@ -1,1 +1,185 @@
-<p>second-stage works!</p>
+<div style="background: #ECECEC;padding:30px;">
+  <div nz-row nzGutter="32">
+    <nz-divider></nz-divider>
+    <div nz-col nzSpan="24">
+      <h4 nz-typography>Data type</h4>
+    </div>
+    <div nz-col nzSpan="16">
+      <nz-card nzTitle="Project data type list ">
+        <nz-table #dataTypesTable [nzData]="dataTypes">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Nullable</th>
+            <th>Default Value</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataTypesTable.data">
+            <td>{{ data.name }}</td>
+            <td>{{ data.nullable }}</td>
+            <td>{{ data.defaultValue }}</td>
+            <td>
+              <a>Edit</a>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+  </div>
+
+  <div nz-row nzGutter="32">
+    <nz-divider></nz-divider>
+    <div nz-col nzSpan="24">
+      <h4 nz-typography>Parameters</h4>
+    </div>
+    <div nz-col nzSpan="16">
+      <nz-card nzTitle="Parameter list ">
+        <nz-table #parametersTable [nzData]="parameters">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Data Type</th>
+            <th>Formula</th>
+            <th>Active</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of parametersTable.data">
+            <td>{{ data.name }}</td>
+            <td>{{ data.dataType }}</td>
+            <td>{{ data.formula }}</td>
+            <td><label nz-checkbox [(ngModel)]="data.active"></label></td>
+            <td>
+              <a>Edit</a>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+  </div>
+
+
+  <div nz-row nzGutter="32">
+    <nz-divider></nz-divider>
+    <div nz-col nzSpan="24">
+      <h4 nz-typography>Model operations</h4>
+    </div>
+    <div nz-col nzSpan="8">
+      <nz-card nzTitle="Project model list">
+        <nz-table #modelsTable [nzData]="dataModels">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of modelsTable.data">
+            <td>{{ data.name }}</td>
+            <td>{{ data.parameters.length }} fields</td>
+            <td>
+              <a>Edit</a>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+
+    <div nz-col nzSpan="16">
+      <nz-card nzTitle="Model editor">
+        <form nz-form [formGroup]="validateForm">
+          <h4 nz-typography>Basic info</h4>
+          <nz-form-item>
+            <nz-form-label>
+              Name
+            </nz-form-label>
+            <nz-form-control>
+              <input
+                class="input"
+                nz-input
+                placeholder="placeholder"
+                formControlName="name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+
+          <h4 nz-typography>Parameters</h4>
+
+          <div formArrayName="modelParameters">
+            <nz-row nzGutter="16" *ngFor="let control of modelParameters().controls; let i = index" [formGroupName]="i">
+              <nz-col nzSpan="6">
+                <nz-form-label>
+                  Parameter
+                </nz-form-label>
+                <nz-form-control>
+                  <nz-select
+                    nzMode="default"
+                    nzPlaceHolder="Please select"
+                    formControlName="name">
+                    <nz-option *ngFor="let item of parameters" [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-col>
+
+              <nz-col nzSpan="6">
+                <nz-form-label>
+                  Scope
+                </nz-form-label>
+                <nz-form-control>
+                  <nz-select
+                    nzMode="default"
+                    nzPlaceHolder="Please select"
+                    formControlName="scope">
+                    <nz-option *ngFor="let item of scopes" [nzLabel]="item" [nzValue]="item"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-col>
+
+              <ng-container *ngIf="isSpecific(control)">
+                <nz-col nzSpan="6">
+                  <nz-form-label>
+                    Classification Table
+                  </nz-form-label>
+                  <nz-form-control>
+                    <nz-select
+                      nzMode="default"
+                      nzPlaceHolder="Please select"
+                      formControlName="classification">
+                      <nz-option *ngFor="let item of classifications" [nzLabel]="item" [nzValue]="item"></nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-col>
+                <nz-col nzSpan="6">
+                  <nz-form-label>
+                    Reference
+                  </nz-form-label>
+                  <nz-form-control>
+                    <input nz-input placeholder="Basic usage" formControlName="reference" />
+                  </nz-form-control>
+                </nz-col>
+              </ng-container>
+            </nz-row>
+
+          </div>
+          <nz-divider></nz-divider>
+
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button nzType="dashed" class="add-button" (click)="addParameter($event)">
+                <i nz-icon nzType="plus"></i>
+                Add parameter
+              </button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-card>
+    </div>
+  </div>
+</div>
