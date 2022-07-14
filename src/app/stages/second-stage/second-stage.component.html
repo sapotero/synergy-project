@@ -1,6 +1,5 @@
 <div style="background: #ECECEC;padding:30px;">
   <div nz-row nzGutter="32">
-    <nz-divider></nz-divider>
     <div nz-col nzSpan="24">
       <h4 nz-typography>Data type</h4>
     </div>
@@ -35,7 +34,7 @@
     <div nz-col nzSpan="24">
       <h4 nz-typography>Parameters</h4>
     </div>
-    <div nz-col nzSpan="16">
+    <div nz-col nzSpan="14">
       <nz-card nzTitle="Parameter list ">
         <nz-table #parametersTable [nzData]="parameters">
           <thead>
@@ -59,6 +58,94 @@
           </tr>
           </tbody>
         </nz-table>
+      </nz-card>
+    </div>
+
+    <div nz-col nzSpan="10">
+      <nz-card nzTitle="Create new parameter">
+        <form nz-form nzLayout="horizontal" [formGroup]="parameterForm">
+          <nz-form-item>
+            <nz-form-label>
+              Name
+            </nz-form-label>
+            <nz-form-control>
+              <input
+                class="input"
+                nz-input
+                formControlName="name"
+                placeholder="Parameter name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <nz-form-item>
+            <nz-form-label>
+              Data type
+            </nz-form-label>
+            <nz-form-control>
+              <nz-select
+                nzMode="default"
+                nzPlaceHolder="Please select"
+                formControlName="dataType">
+                <nz-option *ngFor="let item of dataTypes" [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label>
+              Default value
+            </nz-form-label>
+            <nz-form-control>
+              <input
+                class="input"
+                nz-input
+                formControlName="defaultValue"
+                placeholder="-"
+              />
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label>
+              Nullable
+            </nz-form-label>
+            <nz-form-control>
+              <label nz-checkbox formControlName="nullable"></label>
+            </nz-form-control>
+          </nz-form-item>
+
+          <ng-container *ngIf="isSelect()">
+            <nz-form-item>
+              <nz-form-label>
+                Select From
+              </nz-form-label>
+              <nz-form-control>
+                <nz-select
+                  nzMode="default"
+                  nzPlaceHolder="Please select"
+                  formControlName="selectFrom">
+                  <nz-option *ngFor="let item of parameterDataModels" [nzLabel]="item" [nzValue]="item"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>
+                Formula
+              </nz-form-label>
+              <nz-form-control>
+                <input nz-input placeholder="Basic usage" formControlName="formula"/>
+              </nz-form-control>
+            </nz-form-item>
+          </ng-container>
+
+          <nz-form-item>
+            <button nz-button nzType="primary" class="add-button" (click)="addParameter($event)">
+              Save
+            </button>
+          </nz-form-item>
+        </form>
       </nz-card>
     </div>
   </div>
@@ -161,7 +248,7 @@
                     Reference
                   </nz-form-label>
                   <nz-form-control>
-                    <input nz-input placeholder="Basic usage" formControlName="reference" />
+                    <input nz-input placeholder="Basic usage" formControlName="reference"/>
                   </nz-form-control>
                 </nz-col>
               </ng-container>
@@ -175,6 +262,10 @@
               <button nz-button nzType="dashed" class="add-button" (click)="addParameter($event)">
                 <i nz-icon nzType="plus"></i>
                 Add parameter
+              </button>
+              <button nz-button nzType="primary">
+                <i nz-icon nzType="plus" nzTheme="outline"></i>
+                Create new parameter
               </button>
             </nz-form-control>
           </nz-form-item>

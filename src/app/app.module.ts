@@ -28,12 +28,14 @@ import {NzCommentModule} from "ng-zorro-antd/comment";
 import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
 import {NzBadgeModule} from "ng-zorro-antd/badge";
 import {NzSelectModule} from "ng-zorro-antd/select";
+import { ThirdStageComponent } from './stages/third-stage/third-stage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstStageComponent,
-    SecondStageComponent
+    SecondStageComponent,
+    ThirdStageComponent
   ],
   imports: [
     BrowserModule,

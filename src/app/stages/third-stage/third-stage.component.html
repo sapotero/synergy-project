@@ -1,0 +1,26 @@
+<div style="background: #ECECEC;padding:30px;">
+  <div nz-row nzGutter="32">
+    <div nz-col nzSpan="24">
+      <h4 nz-typography>Pivot table</h4>
+    </div>
+    <div nz-col nzSpan="24">
+      <nz-card>
+        <nz-table [nzData]="rows">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th *ngFor="let row of rows">{{row}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let col of cols">
+            <td>{{col}}</td>
+            <td *ngFor="let row of rows"><label nz-checkbox ></label></td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-card>
+    </div>
+  </div>
+
+</div>

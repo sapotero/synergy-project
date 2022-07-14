@@ -125,6 +125,10 @@ export class SecondStageComponent implements OnInit {
     }
   ]
 
+  parameterDataModels: string[] = [
+    "People", "Contact",
+  ]
+
   dataModels: DataModel[] = [
     {
       name: "Global",
@@ -152,6 +156,7 @@ export class SecondStageComponent implements OnInit {
   ]
 
   validateForm!: FormGroup;
+  parameterForm!: FormGroup;
 
   constructor(private fb: FormBuilder) {
   }
@@ -161,6 +166,19 @@ export class SecondStageComponent implements OnInit {
       name: new FormControl("People"),
       modelParameters: new FormArray([])
     });
+
+    this.parameterForm = this.fb.group({
+      name: new FormControl("Parameter name"),
+      defaultValue: new FormControl(""),
+      nullable: new FormControl(false),
+      dataType: new FormControl(),
+      selectFrom: new FormControl(),
+      formula: new FormControl(""),
+    });
+
+    this.parameterForm.controls['selectFrom'].valueChanges.subscribe(data => {
+      this.parameterForm.get('formula')?.setValue(`= ${data}: First Name + ${data}: Last Name`)
+    })
   }
 
   modelParameters: () => FormArray = () => this.validateForm.get('modelParameters') as FormArray
@@ -178,4 +196,7 @@ export class SecondStageComponent implements OnInit {
     );
 
   isSpecific = (control: AbstractControl): Boolean => control?.get('scope')?.value == this.scopes[2]
+  isSelect = (): Boolean =>
+    this.parameterForm?.get('dataType')?.value == "Multiselect" ||
+    this.parameterForm?.get('dataType')?.value == "Select"
 }

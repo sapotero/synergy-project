@@ -5,12 +5,15 @@
     </a>
   </nz-tab>
   <nz-tab>
-    <a *nzTabLink nz-tab-link [routerLink]="['/stage/second']"  routerLinkActive="active">
+    <a *nzTabLink nz-tab-link [routerLink]="['/stage/second']" routerLinkActive="active">
       Second stage
     </a>
   </nz-tab>
-  <nz-tab nzTitle="Third stage" nzDisabled></nz-tab>
-  <nz-tab nzTitle="Fourth stage" nzDisabled></nz-tab>
+  <nz-tab>
+    <a *nzTabLink nz-tab-link [routerLink]="['/stage/third']" routerLinkActive="active">
+      Third stage
+    </a>
+  </nz-tab>
   <nz-tab nzTitle="MVP" nzDisabled></nz-tab>
 </nz-tabset>
 <router-outlet></router-outlet>
