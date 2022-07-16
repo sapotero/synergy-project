@@ -29,13 +29,16 @@ import {NzDescriptionsModule} from "ng-zorro-antd/descriptions";
 import {NzBadgeModule} from "ng-zorro-antd/badge";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import { ThirdStageComponent } from './stages/third-stage/third-stage.component';
+import { FourthStageComponent } from './stages/fourth-stage/fourth-stage.component';
+import {AngularMaterialDataGridModule} from "angular-material-data-grid";
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstStageComponent,
     SecondStageComponent,
-    ThirdStageComponent
+    ThirdStageComponent,
+    FourthStageComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { ThirdStageComponent } from './stages/third-stage/third-stage.component'
     NzDescriptionsModule,
     NzBadgeModule,
     NzSelectModule,
-    FormsModule
+    FormsModule,
+    AngularMaterialDataGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]
